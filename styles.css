@@ -14,11 +14,33 @@ body {
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 h1 {
   font-size: 2.5em;
   color: #ff69b4;
+  animation: float-up 3s ease infinite alternate; /* Floating animation */
+}
+
+@keyframes float-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
 }
 
 .screen {
@@ -27,12 +49,34 @@ h1 {
 
 .screen.active {
   display: block;
+  animation: slide-up 0.5s ease;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .button-group {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  animation: float 3s ease infinite alternate; /* Floating animation */
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
 }
 
 .board {
@@ -54,7 +98,7 @@ h1 {
   align-items: center;
   font-size: 24px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   position: relative; /* Ensure position relative for absolute positioning */
 }
 
@@ -64,9 +108,10 @@ h1 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0); /* Initially scaled down */
   font-size: 48px;
-  color: #ff4500; /* X color */
+  color: transparent; /* Transparent until scaled up */
+  transition: transform 0.2s ease, color 0.3s ease;
 }
 
 .cell.o::after {
@@ -75,12 +120,20 @@ h1 {
 
 .cell:hover {
   background-color: #ffe4e1;
+  transform: scale(1.1); /* Scale up on hover */
+}
+
+.cell.x.placed::after,
+.cell.o.placed::after {
+  transform: translate(-50%, -50%) scale(1); /* Scale up when placed */
+  color: #ff4500; /* X color */
 }
 
 .message {
   font-size: 20px;
   color: #ff69b4;
   margin: 20px;
+  animation: slide-in 0.5s ease;
 }
 
 button {
@@ -101,8 +154,4 @@ button:hover {
 .markButton {
   margin: 0 10px;
   width: 60px;
-}
-
-.markButton.selected {
-  background: #ff1493;
 }
