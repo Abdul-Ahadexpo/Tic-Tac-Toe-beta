@@ -1,0 +1,108 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #ffefd5;
+}
+
+.game-container {
+  text-align: center;
+  background: #fffacd;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #ff69b4;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+  margin: 20px auto;
+  background-color: transparent; /* No background color */
+  position: relative; /* Ensure position relative for absolute positioning */
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #ff69b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative; /* Ensure position relative for absolute positioning */
+}
+
+.cell.x::after,
+.cell.o::after {
+  content: attr(data-content); /* Show X or O */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #ff4500; /* X color */
+}
+
+.cell.o::after {
+  color: #1e90ff; /* O color */
+}
+
+.cell:hover {
+  background-color: #ffe4e1;
+}
+
+.message {
+  font-size: 20px;
+  color: #ff69b4;
+  margin: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ff1493;
+}
+
+.markButton {
+  margin: 0 10px;
+  width: 60px;
+}
+
+.markButton.selected {
+  background: #ff1493;
+}
